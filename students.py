@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 df = pd.read_csv('c:\_py_projects\students\students.csv')
-
+#test
 #12 позиция, столбец Рост
 #print(df.iloc[[12]]['Growth'])
 
