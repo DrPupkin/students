@@ -1,4 +1,7 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 df = pd.read_csv('c:\_py_projects\students\students.csv')
 
 #12 позиция, столбец Рост
@@ -19,8 +22,8 @@ print(df.info())
 #print(df[df['Weight']==df['Weight'].max()]['Growth'])
 #print(df['Army'].value_counts())
 
-army = df[df['Army']=='могут призвать']
-free = df[df['Army']!='могут призвать']
+#army = df[df['Army']=='могут призвать']
+#free = df[df['Army']!='могут призвать']
 
 #print(army['Hair length'].head())
 #print(free['Hair length'].info())
@@ -55,10 +58,50 @@ d_new['sum'] = d_new['price'] + d_new['count']
 print(d_new.head())
 '''
 
-df_cut = df[['Year of birth','Growth','Weight','Hair length','Shoe size']]
+#df_cut = df[['Year of birth','Growth','Weight','Hair length','Shoe size']]
 #print(df_cut.sort_values(['Shoe size', 'Growth'], ascending=[False, True]).iloc[1,])
-df_cut['Full length'] = df_cut['Growth'] + df_cut['Hair length']
+#df_cut['Full length'] = df_cut['Growth'] + df_cut['Hair length']
 #print(df_cut['Full length'].max())
 #корелляция
 #print(df_cut.corr())
-print(df[['Russian rating','Maths rating','Rock paper scissors']].groupby('Rock paper scissors').mean())
+#print(df[['Russian rating','Maths rating','Rock paper scissors']].groupby('Rock paper scissors').mean())
+#print(df.describe())
+
+#sns.displot(data=df, x='Growth')
+#вывод через бибоиотеку matplotlib
+#plt.show()
+
+#df1=df.dropna()
+#df1=df.fillna(0)
+#df=df.fillna(df.mean())
+#только для количественных
+
+#df['Weight']=df['Weight'].fillna(df['Weight'].mean()) #только для количественных
+#df['Glasses'] = df['Glasses'].fillna('да')
+#print(df['Glasses'].value_counts())
+#print(df['Children number'].isnull().value_counts()[1])
+
+"""
+print(df['Sex'].value_counts())
+males = df[df['Sex']=="мужской"]
+females = df[df['Sex']=="женский"]
+females['Weight'] = females['Weight'].fillna(females['Weight'].mean())
+males['Weight'] = males['Weight'].fillna(males['Weight'].mean())
+df_new=pd.concat([males, females])
+print(df_new['Weight'].mean())
+"""
+
+"""
+singles=df[df['Brother-sister']=='нет ни брата ни сестры']
+sublings=df[df['Brother-sister']!='нет ни брата ни сестры']
+print(singles['Children number'].median())
+print(sublings['Children number'].median())
+singles['Children number'] = singles['Children number'].fillna(singles['Children number'].median())
+sublings['Children number'] = sublings['Children number'].fillna(sublings['Children number'].median())
+df_new=pd.concat([singles, sublings])
+print(df_new['Children number'].median())
+"""
+#выбросы и аномальные значения
+sns.boxplot(df['Age'])
+#вывод через бибоиотеку matplotlib
+plt.show()
